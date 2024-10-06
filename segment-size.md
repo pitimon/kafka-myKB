@@ -27,18 +27,25 @@
 - มี segments จำนวนพอเหมาะ ไม่มากหรือน้อยเกินไป
 - ใช้ทรัพยากรในการจัดการ segments อย่างมีประสิทธิภาพ
 
-ตัวอย่างคำสั่งในการปรับ segment.bytes:
+>ตัวอย่างคำสั่งในการปรับ segment.bytes:
 
 ```bash
-.\bin\kafka-configs.sh --bootstrap-server kafka.a.uni.net.th:19092,kafka.a.uni.net.th:19093,kafka.a.uni.net.th:19094 \
+.\bin\kafka-configs.sh --bootstrap-server kafka.abc.xxx:9092 \
 --alter \
 --entity-type topics \
 --entity-name test1 \
 --add-config segment.bytes=262144000 \
 --command-config admin-client.properties
 ```
-
 คำสั่งนี้จะตั้งค่า `segment.bytes` เป็น 250 MB (262,144,000 bytes)
+
+>และตัวอย่างคำสั่งตรวจสอบค่า Topic
+
+```bash
+kafka-topics --describe --topic test1 \
+--bootstrap-server kafka.abc.xxx:9092 \
+--command-config admin-client.properties
+```
 
 ---
 
